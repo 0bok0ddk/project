@@ -1,0 +1,89 @@
+$(function () {
+  /**
+   * gnb
+   */
+  $(".navBar li").mouseenter(function () {
+    $(this).addClass("active");
+    $(this).find(".navbarSub").addClass("active");
+  });
+  $(".navBar li").mouseleave(function () {
+    $(this).removeClass("active");
+    $(this).find(".navbarSub").removeClass("active");
+  });
+  $(".navBar li").focusin(function () {
+    $(this).addClass("active");
+    $(this).find(".navbarSub").addClass("active");
+  });
+  $(".navBar li").focusout(function () {
+    $(this).removeClass("active");
+    $(this).find(".navbarSub").removeClass("active");
+  });
+
+  $(".navTabHeader li button").on("click", function (e) {
+    var tg = $(this).data("rel");
+    $(".navTab, .navTabHeader li button").removeClass("active");
+    $("." + tg).addClass("active");
+  });
+
+  $("#navTabBottomLang").click(function (e) {
+    e.preventDefault();
+    $(".mNavLangList").toggleClass("active");
+  });
+
+  $("#btnSearchOverlay, #btnMSearchOverlay").click(function () {
+    $(".overlaySearch").addClass("active");
+  });
+  $(".btnOverlayClose").click(function () {
+    $(".overlaySearch").removeClass("active");
+  });
+  $("#btnMNav").click(function () {
+    $("html, body").addClass("overHidden");
+    $(".overlayNavMobile").addClass("active");
+  });
+  $(".overlayNavMobile .btnOverlayClose").click(function () {
+    $("html, body").removeClass("overHidden");
+    $(".overlayNavMobile").removeClass("active");
+  });
+  $(".mNavList .parent").click(function () {
+    $(this).toggleClass("active");
+    $(this).next().slideToggle("fast");
+  });
+
+  $(".asideReserve").mouseenter(function () {
+    $(".subAsideList").removeClass("active");
+    $(this).find(".subAsideList").addClass("active");
+  });
+  $(".asideReserve").mouseleave(function () {
+    $(this).find(".subAsideList").removeClass("active");
+  });
+  $(".asideTime").mouseenter(function () {
+    $(".subAsideList").removeClass("active");
+    $(this).find(".subAsideList").addClass("active");
+  });
+  $(".asideTime").mouseleave(function () {
+    $(this).find(".subAsideList").removeClass("active");
+  });
+  $(".asideLocation").mouseenter(function () {
+    $(".subAsideList").removeClass("active");
+    $(this).find(".subAsideList").addClass("active");
+  });
+  $(".asideLocation").mouseleave(function () {
+    $(this).find(".subAsideList").removeClass("active");
+  });
+
+  $(".langLi").hover(
+    function () {
+      $(this).find(".btnLang").addClass("active");
+      $(this).find(".lang-list").slideDown("fast");
+    },
+    function () {
+      $(this).find(".btnLang").removeClass("active");
+      $(this).find(".lang-list").slideUp("fast");
+    }
+  );
+  
+  $(".btnAsideToggle").click(function () {
+	  $("#shorcutAside").toggleClass("hideToggle");
+	  $(this).toggleClass("active");
+  });
+});

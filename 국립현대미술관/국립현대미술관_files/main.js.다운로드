@@ -1,0 +1,82 @@
+//main_slider
+$('#mainVisual').owlCarousel({
+	items: 1,
+	loop: true,
+	margin: 0,
+	lazyLoad: false,
+	nav: false,
+	dots: false,
+	autoplay:false,
+	autoplayTimeout:5000,
+	autoplayHoverPause:false
+});
+$('.vis_next').click(function() {
+    $('#mainVisual').trigger('next.owl.carousel');
+	$("#mainVisual").trigger("stop.owl.autoplay");
+    return false;
+});
+$('.vis_prev').click(function() {
+    $('#mainVisual').trigger('prev.owl.carousel', [300]);
+	$("#mainVisual").trigger("stop.owl.autoplay");
+    return false;
+});
+$(".vis_play").on("click",function(){
+	$("#mainVisual").trigger("play.owl.autoplay",[1000]);
+	return false;
+});
+$(".vis_pause").on("click",function(){
+	$("#mainVisual").trigger("stop.owl.autoplay");
+	return false;
+});
+/* main_slider 버튼의 클래스 제어가 필요할 시 사용
+$("#mainVisual").on("changed.owl.carousel",function(){
+	if($(".sldbtn2.stop").hasClass("active")){
+		$(".sldbtn2.stop").removeClass("active");
+		$(".sldbtn2.play").addClass("active");
+	}
+}); */
+
+/* 메인 배너 */
+$('#mainBanner.owl-carousel').on('initialized.owl.carousel changed.owl.carousel', function(e) {
+	if (!e.namespace) return
+	var carousel = e.relatedTarget
+	$('#bannerCount').text(carousel.relative(carousel.current()) + 1 + ' ' + '/'+ ' ' + carousel.items().length);}).owlCarousel({
+		items: 1,
+		loop: true,
+		margin: 0,
+		lazyLoad: false,
+		nav: false,
+		dots: false,
+		autoplay:false,
+		autoplayTimeout:5000,
+		autoplayHoverPause:false
+	});
+
+$('.banner_next').click(function() {
+    $('#mainBanner.owl-carousel').trigger('next.owl.carousel');
+    return false;
+});
+$('.banner_prev').click(function() {
+    $('#mainBanner.owl-carousel').trigger('prev.owl.carousel', [300]);
+    return false;
+});
+$(".banner_play").on("click",function(){
+	$("#mainBanner.owl-carousel").trigger("play.owl.autoplay",[1000]);
+	return false;
+});
+$(".banner_pause").on("click",function(){
+	$("#mainBanner.owl-carousel").trigger("stop.owl.autoplay");
+	return false;
+});
+
+$(window).on('load resize scroll',function(){
+
+	if($(window).width() > 747){
+		// 메인 배너 및 퀵 메뉴 높이값 제어 
+		var sliderHeight = $('#mainBanner').outerHeight();
+		$(".quick_banner .quick_area").css({'height':sliderHeight});
+	} else {
+		$(".quick_banner .quick_area").css({'height':'auto'});
+	};
+
+});
